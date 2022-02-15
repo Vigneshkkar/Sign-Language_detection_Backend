@@ -1,0 +1,10 @@
+.SLR_BE/
+.vscode/
+SLD/
+Logs/
+**.h5
+__pycache__/
+.DS_Store
+jsModel/
+**.tflite
+config.ini
