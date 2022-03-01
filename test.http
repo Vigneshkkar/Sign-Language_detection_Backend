@@ -13,3 +13,7 @@ Content-Type: application/json
 }
 
 ###
+
+GET {{base}}/getwords HTTP/1.1
+
+###

@@ -1,11 +1,20 @@
 from flask import Blueprint, request, jsonify, send_from_directory
 from flask_cors import cross_origin
-from flaskr.db import get_all_records, save_documents
+from flaskr.db import get_all_records, save_documents, get_words_count
 from bson import json_util
 import json
 
 dataset_v1 = Blueprint(
     'dataset_v1', 'dataset_v1', url_prefix='/api/v1/dataset')
+
+
+@dataset_v1.route('/getwords', methods=['GET'])
+def api_get_words():
+    data = [doc for doc in get_words_count()]
+    response = {
+        "data": data
+    }
+    return jsonify(data)
 
 
 @dataset_v1.route('/', methods=['GET'])

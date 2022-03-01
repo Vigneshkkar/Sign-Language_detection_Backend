@@ -49,3 +49,8 @@ def save_documents(word, data):
         return False
         
     return True
+
+def get_words_count():
+    return db.PoseValues.aggregate([
+    {"$group" : {"_id":"$word", "count":{"$sum":1}}}
+])
