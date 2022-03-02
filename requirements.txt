@@ -1,4 +1,10 @@
-Flask
-pymongo[srv]
-Flask-PyMongo
-flask_cors
+eventlet==0.33.0
+Flask==2.0.3
+Flask-Cors==3.0.10
+Flask-PyMongo==2.3.0
+Flask-SocketIO==5.1.1
+gevent==21.12.0
+gevent-websocket==0.10.1
+Jinja2==3.0.3
+pymongo==4.0.1
+simple-websocket==0.5.1

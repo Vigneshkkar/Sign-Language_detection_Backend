@@ -1,0 +1,7 @@
+node_modules
+Dockerfile
+.git
+.SLR_BE
+.vscode
+Logs
+SLD

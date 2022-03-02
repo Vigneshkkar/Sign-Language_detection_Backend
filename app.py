@@ -23,7 +23,16 @@ socketio = SocketIO(app, cors_allowed_origins="*")
 
 app.config['CORS_HEADERS'] = 'Content-Type'
 app.config['DEBUG'] = True
-app.config['MONGO_URI'] = config['TEST']['DB_URI']
+try:
+    if os.environ['MODE'] == 'Production':
+        app.config['MONGO_URI'] = config['PROD']['DB_URI']
+    else:
+        app.config['MONGO_URI'] = config['TEST']['DB_URI']
+except:
+    app.config['MONGO_URI'] = config['TEST']['DB_URI']
+
+    
+    
 
 
 
@@ -89,6 +98,14 @@ def on_data(data):
     if data["type"] != "new-ice-candidate":
         print('{} message from {} to {}'.format(data["type"], sender_sid, target_sid))
     socketio.emit('data', data, room=target_sid)
+
+@socketio.on("broadcast-predicted")
+def on_broadcast_predicted(data):
+    sid = request.sid
+    room_id = _room_of_sid[sid]
+    display_name = _name_of_sid[sid]
+
+    emit("get-predicted", data, broadcast=True, include_self=False, room=room_id)
 
 if __name__ == "__main__":
     

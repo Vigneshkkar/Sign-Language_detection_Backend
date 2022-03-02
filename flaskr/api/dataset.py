@@ -9,6 +9,7 @@ dataset_v1 = Blueprint(
 
 
 @dataset_v1.route('/getwords', methods=['GET'])
+@cross_origin()
 def api_get_words():
     data = [doc for doc in get_words_count()]
     response = {
@@ -18,6 +19,7 @@ def api_get_words():
 
 
 @dataset_v1.route('/', methods=['GET'])
+@cross_origin()
 def api_get_root():
     data = [doc for doc in get_all_records()]
     response = {
